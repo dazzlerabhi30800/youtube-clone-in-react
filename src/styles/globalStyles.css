@@ -1,1 +1,10 @@
 @import './header.css';
+@import './navbar.css';
+
+
+button {
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #fff;
+}

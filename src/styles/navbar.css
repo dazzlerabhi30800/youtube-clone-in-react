@@ -1,0 +1,39 @@
+nav {
+    /* background: #282727; */
+    background: url("https://images.unsplash.com/photo-1577979749830-f1d742b96791?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80");
+    background-size: contain;
+    background-position: center;
+    backdrop-filter: blur(10px);
+    display: flex;
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+    background: #000000af;
+    backdrop-filter: blur(10px);
+    justify-content: space-between;
+    width: 100%;
+}
+
+
+.link {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex: 1;
+    font-size: 1.1rem;
+    padding: 8px 10px;
+}
+
+
+@media (hover:hover) {
+    .link {
+        cursor: pointer;
+        transition: 0.4s linear;
+    }
+
+    .link:hover {
+        background: #ffffff2e;
+    }
+}

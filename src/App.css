@@ -27,12 +27,18 @@
 
 
 nav {
-  align-items: center;
-  flex-basis: 30%;
+  width: clamp(250px, 25%, 300px);
 }
 
 
 main {
   display: flex;
   height: calc(100% - 64px);
+}
+
+button,
+button:active,
+a:active,
+a {
+  -webkit-tap-highlight-color: transparent;
 }

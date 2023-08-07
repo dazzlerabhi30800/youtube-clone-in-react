@@ -1,20 +1,26 @@
 import { BsYoutube, BsSearch } from "react-icons/bs";
 import { RiVideoAddLine } from "react-icons/ri";
+import { RxHamburgerMenu } from "react-icons/rx";
 import { IoMdNotificationsOutline } from "react-icons/io";
 
 const Header = () => {
   return (
     <header>
-      <h1 className="logo">
-        <BsYoutube />
-        <span> Youtube</span>
-      </h1>
-      <div className="search--container">
+      <div className="menu--header">
+        <button style={{ fontSize: "1.3rem" }}>
+          <RxHamburgerMenu />
+        </button>
+        <div className="logo">
+          <BsYoutube />
+          <h1> Youtube</h1>
+        </div>
+      </div>
+      <form className="search--container">
         <input type="text" placeholder="Search" className="search-input" />
-        <button className="search--btn">
+        <button type="submit" className="search--btn">
           <BsSearch />
         </button>
-      </div>
+      </form>
       <div className="header-info">
         <RiVideoAddLine />
         <IoMdNotificationsOutline />
