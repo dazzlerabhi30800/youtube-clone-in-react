@@ -1,0 +1,38 @@
+/* @import url('https://fonts.cdnfonts.com/css/youtube-sans'); */
+@import "./styles/globalStyles.css";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+:root {
+  --youtube-font: 'YouTube Sans', sans-serif;
+  --youtube-font-dark: 'YouTube Sans Dark', sans-serif;
+  --background: #0f0f0f;
+}
+
+
+
+
+
+#root {
+  height: 100vh;
+  color: #fff;
+  background-color: var(--background);
+  font-family: var(--youtube-font-dark);
+}
+
+
+nav {
+  align-items: center;
+  flex-basis: 30%;
+}
+
+
+main {
+  display: flex;
+  height: calc(100% - 64px);
+}
