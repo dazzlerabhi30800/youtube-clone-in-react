@@ -6,6 +6,7 @@ nav {
     background-position: center;
     backdrop-filter: blur(10px);
     display: flex;
+    transition: 0.3s linear;
 }
 
 .links {
@@ -24,7 +25,6 @@ nav {
     gap: 15px;
     flex: 1;
     font-size: 1.1rem;
-    padding: 8px 1.8rem;
 }
 
 hr {
@@ -35,10 +35,25 @@ hr {
 @media (hover:hover) {
     .link {
         cursor: pointer;
-        transition: 0.4s linear;
+        transition: background 0.4s linear;
     }
 
     .link:hover {
         background: #ffffff2e;
+    }
+}
+
+
+@media screen and (max-width: 700px) {
+    nav {
+        position: absolute;
+        top: 60px;
+        height: calc(100vh - 60px);
+        left: 0;
+        transform: translateX(-500px);
+    }
+
+    nav.active {
+        transform: translateX(0px);
     }
 }

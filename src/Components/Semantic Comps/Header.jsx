@@ -5,6 +5,7 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import { showMenu } from "../../../redux/Slice";
+import Resize from "../specialUtils/Resize";
 
 const Header = () => {
   const menu = useSelector((data) => data.youtubeReducer.menu);

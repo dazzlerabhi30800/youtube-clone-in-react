@@ -1,4 +1,3 @@
-import { useSelector } from "react-redux";
 import "./App.css";
 import Home from "./Components/Pages/Home/Home";
 import Header from "./Components/Semantic Comps/Header";

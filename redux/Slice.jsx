@@ -4,11 +4,21 @@ import { useSelector } from "react-redux";
 const stateSlices = createSlice({
   name: "youtubeStates",
   initialState: {
-    menu: false,
+    menu: true,
+    navbar: false,
   },
   reducers: {
     showMenu: (state, action) => {
-      state.menu = !state.menu;
+      return {
+        ...state,
+        menu: !state.menu,
+      };
+    },
+    showNavbar: (state, action) => {
+      return {
+        ...state,
+        navbar: !state.navbar,
+      };
     },
   },
 });
@@ -19,6 +29,6 @@ const store = configureStore({
   },
 });
 
-export const { showMenu } = stateSlices.actions;
+export const { showMenu, showNavbar } = stateSlices.actions;
 
 export default store;

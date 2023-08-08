@@ -5,12 +5,17 @@ import { useSelector } from "react-redux";
 export default function Navbar() {
   const menu = useSelector((data) => data.youtubeReducer.menu);
   return (
-    <nav>
+    <nav style={{ transform: menu && "translateX(0px)" }}>
       <div className="links">
         {categories.map(({ name, icon, type, divider }, index) => (
           <React.Fragment key={index}>
-            <div className="link">
-              {icon} {!menu && name}
+            <div
+              style={{
+                padding: `8px ${menu ? "1.8rem" : "1rem"}`,
+              }}
+              className="link"
+            >
+              {icon} {menu && name}
             </div>
             {divider && <hr />}
           </React.Fragment>
