@@ -102,7 +102,6 @@ header {
 @media (hover:hover) {
     .search--btn:hover {
         background: #535252;
-        cursor: pointer;
         color: #fff;
     }
 }

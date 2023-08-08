@@ -1,13 +1,21 @@
 import { BsYoutube, BsSearch } from "react-icons/bs";
 import { RiVideoAddLine } from "react-icons/ri";
+import { AiOutlineClose } from "react-icons/ai";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoMdNotificationsOutline } from "react-icons/io";
+import { useDispatch, useSelector } from "react-redux";
+import { showMenu } from "../../../redux/Slice";
 
 const Header = () => {
+  const menu = useSelector((data) => data.youtubeReducer.menu);
+  const dispatch = useDispatch();
   return (
     <header>
       <div className="menu--header">
-        <button style={{ fontSize: "1.3rem" }}>
+        <button
+          onClick={() => dispatch(showMenu())}
+          style={{ fontSize: "1.3rem" }}
+        >
           <RxHamburgerMenu />
         </button>
         <div className="logo">

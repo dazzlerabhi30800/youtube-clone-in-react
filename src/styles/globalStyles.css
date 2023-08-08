@@ -8,3 +8,10 @@ button {
     background: transparent;
     color: #fff;
 }
+
+
+@media (hover:hover) {
+    button {
+        cursor: pointer;
+    }
+}

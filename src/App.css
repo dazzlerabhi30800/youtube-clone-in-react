@@ -27,7 +27,8 @@
 
 
 nav {
-  width: clamp(250px, 25%, 300px);
+  width: fit-content;
+  max-width: 350px;
 }
 
 
