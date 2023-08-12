@@ -9,6 +9,7 @@ const stateSlices = createSlice({
     inputQuery: "",
     homeResults: [],
     category: "New",
+    loading: false,
   },
   reducers: {
     showMenu: (state, action) => {
@@ -53,6 +54,12 @@ const stateSlices = createSlice({
         category: action.payload,
       };
     },
+    setLoading: (state, action) => {
+      return {
+        ...state,
+        loading: action.payload,
+      };
+    },
   },
 });
 
@@ -69,8 +76,8 @@ export const {
   setSearchResults,
   setInputQuery,
   setHomeResults,
-  setPage,
   setCategory,
+  setLoading,
 } = stateSlices.actions;
 
 export default store;

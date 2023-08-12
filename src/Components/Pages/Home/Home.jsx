@@ -1,22 +1,26 @@
 import { useEffect, useRef } from "react";
 import { FetchResults, formatViews } from "../../../api/FetchApi";
-import { setHomeResults } from "../../../../redux/Slice";
+import { setHomeResults, setLoading } from "../../../../redux/Slice";
 import { BsCheckCircleFill } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
+import { Loader } from "../../utils/Loader";
 
 export default function Home() {
-  const { homeResults, category } = useSelector((data) => data.youtubeReducer);
-  const searchCompRef = useRef();
+  const { homeResults, category, loading } = useSelector(
+    (data) => data.youtubeReducer
+  );
   const dispatch = useDispatch();
   useEffect(() => {
-    FetchResults(`search/?q=${category}`).then(({ data: { contents } }) =>
-      dispatch(setHomeResults(contents))
-    );
+    dispatch(setLoading(true));
+    FetchResults(`search/?q=${category}`).then(({ data: { contents } }) => {
+      dispatch(setHomeResults(contents));
+      dispatch(setLoading(false));
+    });
   }, [category]);
 
   return (
-    <div className="search--component" ref={searchCompRef}>
-      {homeResults && homeResults.length > 1 ? (
+    <div className={`search--component ${loading ? "centered" : ""}`}>
+      {homeResults && homeResults.length > 1 && !loading ? (
         homeResults
           .filter((item) => item?.type === "video")
           .map((item, index) => {
@@ -53,7 +57,7 @@ export default function Home() {
             );
           })
       ) : (
-        <div>Loading...</div>
+        <Loader />
       )}
     </div>
   );
