@@ -1,15 +1,51 @@
+import { useEffect, useRef } from "react";
 import { BsYoutube, BsSearch } from "react-icons/bs";
 import { RiVideoAddLine } from "react-icons/ri";
 import { AiOutlineClose } from "react-icons/ai";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
-import { showMenu } from "../../../redux/Slice";
-import Resize from "../specialUtils/Resize";
+import {
+  setInputQuery,
+  setSearchResults,
+  showMenu,
+} from "../../../redux/Slice";
+import { FetchResults } from "../../api/FetchApi";
 
 const Header = () => {
-  const menu = useSelector((data) => data.youtubeReducer.menu);
+  const { menu, searchResults, inputQuery } = useSelector(
+    (data) => data.youtubeReducer
+  );
+
+  const inputRef = useRef();
+
+  const closeSearchMenu = () => {
+    dispatch(setSearchResults(null));
+    dispatch(setInputQuery(""));
+    inputRef.current.value = "";
+  };
+
   const dispatch = useDispatch();
+
+  const handleResults = async (e) => {
+    e.preventDefault();
+    if (inputQuery.length <= 1) return;
+    const data = await FetchResults(`auto-complete/?q=${inputQuery}`);
+    console.log(data);
+  };
+
+  useEffect(() => {
+    const funcTimeout = setTimeout(async () => {
+      if (inputQuery.length <= 1) {
+        dispatch(setSearchResults(null));
+        return;
+      }
+      const { data } = await FetchResults(`auto-complete/?q=${inputQuery}`);
+      dispatch(setSearchResults(data.results));
+    }, 400);
+    return () => clearTimeout(funcTimeout);
+  }, [inputQuery]);
+
   return (
     <header>
       <div className="menu--header">
@@ -24,8 +60,19 @@ const Header = () => {
           <h1> Youtube</h1>
         </div>
       </div>
-      <form className="search--container">
-        <input type="text" placeholder="Search" className="search-input" />
+      <form onSubmit={handleResults} className="search--container">
+        <input
+          onChange={(e) => dispatch(setInputQuery(e.target.value))}
+          ref={inputRef}
+          type="text"
+          placeholder="Search"
+          className="search-input"
+        />
+        {searchResults && (
+          <button onClick={closeSearchMenu} className="cancel--search">
+            <AiOutlineClose className="" />
+          </button>
+        )}
         <button type="submit" className="search--btn">
           <BsSearch />
         </button>
@@ -39,6 +86,17 @@ const Header = () => {
           width={40}
           height={40}
         />
+      </div>
+
+      <div
+        className={`searchResults ${searchResults && "show"}`}
+        id="searchList"
+      >
+        {searchResults &&
+          searchResults.length > 1 &&
+          searchResults
+            .slice(0, 6)
+            .map((item, index) => <span key={index}>{item}</span>)}
       </div>
     </header>
   );

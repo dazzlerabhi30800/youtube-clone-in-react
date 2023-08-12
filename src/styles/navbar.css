@@ -31,6 +31,10 @@ hr {
     border: 1px solid #42423f;
 }
 
+.active {
+    background: #ffffff2e;
+}
+
 
 @media (hover:hover) {
     .link {
@@ -41,6 +45,14 @@ hr {
     .link:hover {
         background: #ffffff2e;
     }
+}
+
+nav.hide {
+    position: absolute;
+    top: 60px;
+    height: calc(100vh - 60px);
+    left: 0;
+    transform: translateX(-500px);
 }
 
 
