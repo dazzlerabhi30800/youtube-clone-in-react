@@ -62,6 +62,7 @@ nav.hide {
         top: 60px;
         height: calc(100vh - 60px);
         left: 0;
+        z-index: 444;
         transform: translateX(-500px);
     }
 
