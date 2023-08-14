@@ -1,5 +1,5 @@
 :root {
-    --player-height: 1000px;
+    --player-height: 550px;
     --relate-height: 150px;
 }
 
@@ -60,10 +60,8 @@
     display: flex;
     gap: 1rem;
     flex-direction: column;
-    max-width: 600px;
     margin: 10px auto;
     width: 100%;
-    /* background: red; */
 }
 
 .related--video {
@@ -72,14 +70,13 @@
     gap: 15px;
     width: 100%;
     margin: 0 auto;
-    height: 150px;
     padding: 5px;
 }
 
 .thumbnail {
-    height: calc(var(--relate-height) - 30px);
     display: flex;
     border-radius: 10px;
+    height: calc(var(--relate-height) - 40px);
     width: 50%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -124,16 +121,18 @@
 
 @media screen and (min-width: 1000px) {
     .video--component {
-        flex-direction: row;
+        display: grid;
+        grid-template-areas: "one one  two";
     }
 
     .video--player {
-        width: 60%;
-        flex: 1;
+        width: 100%;
+        grid-area: one;
     }
 
     .related--video--container {
-        width: 40%;
+        width: 100%;
+        grid-area: two;
     }
 }
 
@@ -141,15 +140,10 @@
 
 @media screen and (min-width: 1200px) {
     .video--component {
-        flex-direction: row;
-    }
+        padding: 2rem;
+        grid-template-areas: "one one one one two two";
 
-    .video--player {
-        width: 70%;
-    }
-
-    .related--video--container {
-        width: 30%;
+        --relate-height: 160px;
     }
 
 }

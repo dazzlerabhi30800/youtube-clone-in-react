@@ -34,7 +34,7 @@ export default function Video() {
           url={`https://www.youtube.com/watch?v=${id}`}
           className="videoPlayer"
           width="100%"
-          height={width >= 700 ? (width >= 1000 ? "800px" : "500px") : "400px"}
+          height={width >= 700 ? (width >= 1200 ? "650px" : "550px") : "400px"}
           config={{
             youtube: {
               playerVars: { showinfo: 1 },
