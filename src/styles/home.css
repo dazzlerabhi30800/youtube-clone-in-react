@@ -1,11 +1,35 @@
 .search--component {
     display: grid;
-    padding: 1rem;
+    padding: 2rem;
     overflow-y: auto;
     overflow-x: hidden;
     flex: 1;
     grid-template-columns: repeat(1, 100%);
-    grid-gap: 1rem;
+    grid-gap: 1.5rem;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+    overflow: hidden;
+    height: 300px;
+}
+
+.channel {
+    border: 1px solid #d3edfe;
+}
+
+.channel>h1 {
+    font-size: clamp(1.3rem, 2vw, 1.8rem);
+}
+
+.channel>p {
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.channel>img {
+    border-radius: 50%;
 }
 
 .centered {
@@ -16,10 +40,9 @@
 
 .search--card {
     background-repeat: no-repeat;
-    height: 300px;
     background-size: cover;
     background-position: center;
-    overflow: hidden;
+    height: 300px;
     border-radius: 5px;
     display: flex;
     justify-content: end;
@@ -32,6 +55,7 @@
     padding: 10px;
     display: flex;
     flex-direction: column;
+    width: 100%;
     justify-content: space-between;
     gap: 15px;
 }
@@ -63,6 +87,17 @@
 }
 
 
+@media (hover:hover) {
+    .search--card {
+        transition: 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+
+    .channel:hover {
+        border-color: #a7dffd;
+    }
+}
+
+
 @media (min-width: 550px) {
     .search--component {
         grid-template-columns: repeat(2, 1fr);
@@ -83,7 +118,6 @@
     .search--component {
         grid-template-columns: repeat(4, 1fr);
         padding: 2rem;
-        /* place-content: start center; */
         grid-gap: 2rem;
     }
 

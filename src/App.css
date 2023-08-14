@@ -1,4 +1,5 @@
 /* @import url('https://fonts.cdnfonts.com/css/youtube-sans'); */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 @import "./styles/globalStyles.css";
 
 * {
@@ -9,8 +10,9 @@
 
 
 :root {
-  --youtube-font: 'YouTube Sans', sans-serif;
-  --youtube-font-dark: 'YouTube Sans Dark', sans-serif;
+  /* --youtube-font: 'YouTube Sans', sans-serif;
+  --youtube-font-dark: 'YouTube Sans Dark', sans-serif; */
+  --montserrat-font: "Montserrat", sans-serif;
   --background: #0f0f0f;
 }
 
@@ -27,7 +29,7 @@ body {
   height: 100vh;
   color: #fff;
   background-color: var(--background);
-  font-family: var(--youtube-font-dark);
+  font-family: var(--montserrat-font);
 }
 
 

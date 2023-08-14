@@ -1,13 +1,10 @@
 import { useEffect, useRef } from "react";
-import {
-  FetchResults,
-  formatSeconds,
-  formatViews,
-} from "../../../api/FetchApi";
+import { FetchResults } from "../../../api/FetchApi";
 import { setHomeResults, setLoading } from "../../../../redux/Slice";
-import { BsCheckCircleFill } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { Loader } from "../../utils/Loader";
+import SearchCard from "./SearchCard";
+import SearchChannel from "./SearchChannel";
 
 export default function Home() {
   const { homeResults, category, loading } = useSelector(
@@ -21,69 +18,25 @@ export default function Home() {
       dispatch(setLoading(false));
     });
   }, [category]);
-  console.log(homeResults);
-
-  const handleMouseEnter = (video, id, thumbnail) => {
-    if (!thumbnail) return;
-    const targetElement = document.getElementById(`${id}`);
-    targetElement.style.backgroundImage = `url(${thumbnail})`;
-  };
-
-  const handleMouseLeave = (id, thumbnail) => {
-    if (!thumbnail) return;
-    const targetElement = document.getElementById(`${id}`);
-    targetElement.style.backgroundImage = `url(${thumbnail})`;
-  };
 
   return (
     <div className={`search--component ${loading ? "centered" : ""}`}>
-      {homeResults && homeResults.length > 1 && !loading ? (
+      {homeResults.length > 1 && !loading ? (
         homeResults
-          .filter((item) => item?.type === "video")
+          .filter(
+            (item, index, arr) =>
+              item?.type !== "playlist" &&
+              arr.findIndex(
+                (elem) => elem?.video?.videoId === item?.video?.videoId
+              ) === index
+          )
           .map((item, index) => {
-            let { video, type } = item;
-            return (
-              <div
-                key={index}
-                style={{
-                  backgroundImage: `url(${video?.thumbnails[0]?.url})`,
-                }}
-                onMouseEnter={() =>
-                  handleMouseEnter(
-                    video,
-                    video?.videoId,
-                    video.movingThumbnails && video?.movingThumbnails[0]?.url
-                  )
-                }
-                onMouseLeave={() =>
-                  handleMouseLeave(video?.videoId, video?.thumbnails[0]?.url)
-                }
-                className="search--card"
-                id={video?.videoId}
-              >
-                <div className="search--card--div">
-                  <h1 className="title">{video?.title}</h1>
-                  <div className="avatar">
-                    <img src={video?.author?.avatar[0]?.url} alt="title" />
-                    <p>{video?.author?.title || "No title Available"}</p>
-                    {video?.author?.badges[0]?.text === "Verified" && (
-                      <span>
-                        <BsCheckCircleFill />
-                      </span>
-                    )}
-                  </div>
-                  <div className="stats">
-                    <span>
-                      {formatViews(
-                        video?.stats?.views || video?.stats?.viewers
-                      )}
-                    </span>
-                    <span>{video?.publishedTimeText}</span>
-                    <span>{formatSeconds(video.lengthSeconds)}</span>
-                  </div>
-                </div>
-              </div>
-            );
+            let { channel, video, type } = item;
+            if (type === "video") {
+              return <SearchCard key={index} video={video} />;
+            } else {
+              return <SearchChannel key={index} channel={channel} />;
+            }
           })
       ) : (
         <Loader />

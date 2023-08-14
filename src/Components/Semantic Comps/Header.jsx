@@ -11,41 +11,19 @@ import {
   setSearchResults,
   showMenu,
 } from "../../../redux/Slice";
-import { FetchResults } from "../../api/FetchApi";
 
 const Header = () => {
-  const { menu, searchResults, inputQuery } = useSelector(
+  const { searchResults, inputQuery } = useSelector(
     (data) => data.youtubeReducer
   );
 
-  const inputRef = useRef();
-
-  const closeSearchMenu = () => {
-    dispatch(setSearchResults(null));
-    dispatch(setInputQuery(""));
-    inputRef.current.value = "";
-  };
-
   const dispatch = useDispatch();
 
-  const handleResults = async (e) => {
+  const handleResults = (e) => {
     e.preventDefault();
     if (inputQuery.length <= 1) return;
-    const data = await FetchResults(`auto-complete/?q=${inputQuery}`);
-    console.log(data);
+    dispatch(setCategory(inputQuery));
   };
-
-  useEffect(() => {
-    const funcTimeout = setTimeout(async () => {
-      if (inputQuery.length <= 1) {
-        dispatch(setSearchResults(null));
-        return;
-      }
-      const { data } = await FetchResults(`auto-complete/?q=${inputQuery}`);
-      dispatch(setSearchResults(data.results));
-    }, 300);
-    return () => clearTimeout(funcTimeout);
-  }, [inputQuery]);
 
   return (
     <header>
@@ -64,16 +42,11 @@ const Header = () => {
       <form onSubmit={handleResults} className="search--container">
         <input
           onChange={(e) => dispatch(setInputQuery(e.target.value))}
-          ref={inputRef}
+          value={inputQuery}
           type="text"
           placeholder="Search"
           className="search-input"
         />
-        {searchResults && (
-          <button onClick={closeSearchMenu} className="cancel--search">
-            <AiOutlineClose className="" />
-          </button>
-        )}
         <button type="submit" className="search--btn">
           <BsSearch />
         </button>
