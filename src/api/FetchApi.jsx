@@ -1,12 +1,14 @@
 import axios from "axios";
 
+const apiKey = import.meta.env.VITE_API_KEY.toString();
+
 const options = {
   params: {
     hl: "en",
     gl: "US",
   },
   headers: {
-    "X-RapidAPI-Key": import.meta.env.VITE_API_KEY.toString(),
+    "X-RapidAPI-Key": apiKey,
     "X-RapidAPI-Host": "youtube138.p.rapidapi.com",
   },
 };
