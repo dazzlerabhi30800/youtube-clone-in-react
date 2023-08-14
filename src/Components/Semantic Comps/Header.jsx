@@ -6,6 +6,7 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  setCategory,
   setInputQuery,
   setSearchResults,
   showMenu,
@@ -42,7 +43,7 @@ const Header = () => {
       }
       const { data } = await FetchResults(`auto-complete/?q=${inputQuery}`);
       dispatch(setSearchResults(data.results));
-    }, 400);
+    }, 300);
     return () => clearTimeout(funcTimeout);
   }, [inputQuery]);
 
@@ -94,9 +95,17 @@ const Header = () => {
       >
         {searchResults &&
           searchResults.length > 1 &&
-          searchResults
-            .slice(0, 6)
-            .map((item, index) => <span key={index}>{item}</span>)}
+          searchResults.slice(0, 6).map((item, index) => (
+            <span
+              onClick={() => {
+                dispatch(setCategory(item));
+                dispatch(setSearchResults(null));
+              }}
+              key={index}
+            >
+              {item}
+            </span>
+          ))}
       </div>
     </header>
   );

@@ -1,5 +1,9 @@
 import { useEffect, useRef } from "react";
-import { FetchResults, formatViews } from "../../../api/FetchApi";
+import {
+  FetchResults,
+  formatSeconds,
+  formatViews,
+} from "../../../api/FetchApi";
 import { setHomeResults, setLoading } from "../../../../redux/Slice";
 import { BsCheckCircleFill } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,6 +21,19 @@ export default function Home() {
       dispatch(setLoading(false));
     });
   }, [category]);
+  console.log(homeResults);
+
+  const handleMouseEnter = (video, id, thumbnail) => {
+    if (!thumbnail) return;
+    const targetElement = document.getElementById(`${id}`);
+    targetElement.style.backgroundImage = `url(${thumbnail})`;
+  };
+
+  const handleMouseLeave = (id, thumbnail) => {
+    if (!thumbnail) return;
+    const targetElement = document.getElementById(`${id}`);
+    targetElement.style.backgroundImage = `url(${thumbnail})`;
+  };
 
   return (
     <div className={`search--component ${loading ? "centered" : ""}`}>
@@ -31,7 +48,18 @@ export default function Home() {
                 style={{
                   backgroundImage: `url(${video?.thumbnails[0]?.url})`,
                 }}
+                onMouseEnter={() =>
+                  handleMouseEnter(
+                    video,
+                    video?.videoId,
+                    video.movingThumbnails && video?.movingThumbnails[0]?.url
+                  )
+                }
+                onMouseLeave={() =>
+                  handleMouseLeave(video?.videoId, video?.thumbnails[0]?.url)
+                }
                 className="search--card"
+                id={video?.videoId}
               >
                 <div className="search--card--div">
                   <h1 className="title">{video?.title}</h1>
@@ -51,6 +79,7 @@ export default function Home() {
                       )}
                     </span>
                     <span>{video?.publishedTimeText}</span>
+                    <span>{formatSeconds(video.lengthSeconds)}</span>
                   </div>
                 </div>
               </div>

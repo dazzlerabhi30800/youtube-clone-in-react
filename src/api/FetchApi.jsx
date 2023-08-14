@@ -29,3 +29,13 @@ export function formatViews(views) {
     return Math.ceil(views / 1000000000) + "B";
   }
 }
+
+export function formatSeconds(time) {
+  const seconds = Math.floor(time % 60);
+  const minutes = Math.floor(time / 60);
+  const hours = Math.floor(minutes / 60);
+
+  return `${hours > 0 ? hours + ":" : ""}${minutes}:${
+    seconds > 10 ? seconds : "0" + seconds
+  }`;
+}
