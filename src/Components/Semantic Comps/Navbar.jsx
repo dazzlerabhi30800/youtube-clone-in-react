@@ -2,18 +2,23 @@ import React from "react";
 import Resize from "../specialUtils/Resize";
 import { categories } from "../utils/NavbarUtils";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { setCategory, setMenu } from "../../../redux/Slice";
 
 export default function Navbar() {
   const { menu, category } = useSelector((data) => data.youtubeReducer);
   const dispatch = useDispatch();
+
   const { width } = Resize();
 
   const location = useLocation();
+  const navigate = useNavigate();
   const handleCategory = (name, type) => {
     if (type === "menu") return;
     dispatch(setCategory(name));
+    if (location.pathname !== "/") {
+      navigate("/");
+    }
   };
   return (
     <nav

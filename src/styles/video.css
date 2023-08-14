@@ -1,0 +1,155 @@
+:root {
+    --player-height: 1000px;
+    --relate-height: 150px;
+}
+
+.video--component {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    padding: 1rem;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.videoPlayer {
+    height: var(--player-height);
+}
+
+
+.video--text * {
+    margin: 10px 0;
+}
+
+.video--component h2 {
+    font-size: clamp(1rem, 1.5vw, 1.4rem);
+}
+
+
+.video--player {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.video--info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 10px;
+}
+
+.video--stats {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.stat {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+
+
+/* Related Video Info */
+.related--video--container {
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 10px auto;
+    width: 100%;
+    /* background: red; */
+}
+
+.related--video {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    margin: 0 auto;
+    height: 150px;
+    padding: 5px;
+}
+
+.thumbnail {
+    height: calc(var(--relate-height) - 30px);
+    display: flex;
+    border-radius: 10px;
+    width: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    background-position: center;
+}
+
+.duration {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background: rgba(0, 0, 0, 0.679);
+    backdrop-filter: blur(10px);
+    color: #fff;
+    font-weight: 500;
+    font-size: 12px;
+    border-radius: 5px;
+    padding: 5px 8px;
+}
+
+
+
+
+.related--info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-weight: 500;
+}
+
+.related--info h2 {
+    font-size: 0.8rem;
+    color: #ffffff;
+}
+
+.related--info p,
+.related--stats {
+    font-size: clamp(13px, 1.2vw, 15px);
+    color: #bbbbbb;
+}
+
+
+@media screen and (min-width: 1000px) {
+    .video--component {
+        flex-direction: row;
+    }
+
+    .video--player {
+        width: 60%;
+        flex: 1;
+    }
+
+    .related--video--container {
+        width: 40%;
+    }
+}
+
+
+
+@media screen and (min-width: 1200px) {
+    .video--component {
+        flex-direction: row;
+    }
+
+    .video--player {
+        width: 70%;
+    }
+
+    .related--video--container {
+        width: 30%;
+    }
+
+}

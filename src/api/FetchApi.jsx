@@ -39,3 +39,11 @@ export function formatSeconds(time) {
     seconds > 10 ? seconds : "0" + seconds
   }`;
 }
+
+export function formatNumbers(number) {
+  const integerFormater = new Intl.NumberFormat("en-us", {
+    maximumFractionDigits: 0,
+  });
+  const formattedNumber = integerFormater.format(number);
+  return formattedNumber;
+}

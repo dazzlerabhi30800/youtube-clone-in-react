@@ -8,7 +8,8 @@ const stateSlices = createSlice({
     searchResults: null,
     inputQuery: "",
     homeResults: [],
-    videoInfo: [],
+    relatedVideo: null,
+    videoInfo: null,
     category: "New",
     loading: false,
   },
@@ -67,6 +68,12 @@ const stateSlices = createSlice({
         videoInfo: action.payload,
       };
     },
+    setRelatedVideo: (state, action) => {
+      return {
+        ...state,
+        relatedVideo: action.payload,
+      };
+    },
   },
 });
 
@@ -86,6 +93,7 @@ export const {
   setCategory,
   setLoading,
   setVideoInfo,
+  setRelatedVideo,
 } = stateSlices.actions;
 
 export default store;

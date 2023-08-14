@@ -11,6 +11,7 @@ import {
   setSearchResults,
   showMenu,
 } from "../../../redux/Slice";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Header = () => {
   const { searchResults, inputQuery } = useSelector(
@@ -18,10 +19,15 @@ const Header = () => {
   );
 
   const dispatch = useDispatch();
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const handleResults = (e) => {
     e.preventDefault();
     if (inputQuery.length <= 1) return;
+    if (location.pathname !== "/") {
+      navigate("/");
+    }
     dispatch(setCategory(inputQuery));
   };
 

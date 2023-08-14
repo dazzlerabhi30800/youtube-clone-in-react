@@ -42,6 +42,7 @@ nav {
 main {
   display: flex;
   height: calc(100% - 64px);
+  overflow: hidden;
 }
 
 button,
