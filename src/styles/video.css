@@ -99,6 +99,9 @@
 
 
 
+.related--info--container {
+    width: 50%;
+}
 
 .related--info {
     display: flex;
@@ -120,20 +123,34 @@
 
 
 @media screen and (min-width: 1000px) {
+
     .video--component {
         display: grid;
-        grid-template-areas: "one one  two";
+        grid-template-areas: repeat(4, 1fr);
     }
 
     .video--player {
         width: 100%;
-        grid-area: one;
+        grid-column-start: 1;
+        grid-column-end: 2;
     }
 
     .related--video--container {
         width: 100%;
-        grid-area: two;
+        grid-column-start: 3;
+        grid-column-end: 4;
     }
+
+    .thumbnail {
+        width: 40%;
+    }
+
+    .related--info--container {
+        width: 60%;
+    }
+
+
+
 }
 
 
@@ -141,9 +158,18 @@
 @media screen and (min-width: 1200px) {
     .video--component {
         padding: 2rem;
-        grid-template-areas: "one one one one two two";
+        grid-template-areas: repeat(5, 1fr);
+    }
 
-        --relate-height: 160px;
+
+    .video--player {
+        grid-column-start: 1;
+        grid-column-end: 3;
+    }
+
+    .related--video--container {
+        grid-column-start: 4;
+        grid-column-end: 5;
     }
 
 }

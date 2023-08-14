@@ -19,8 +19,8 @@ export default function RelatedVideo({ info: { video } }) {
             display: "flex",
             flexDirection: "column",
             gap: "5px",
-            flexBasis: "50%",
           }}
+          className="related--info--container"
         >
           <div className="related--info">
             <h2>{video?.title}</h2>
