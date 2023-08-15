@@ -33,9 +33,9 @@ export default function Home() {
           .map((item, index) => {
             let { channel, video, type } = item;
             if (type === "video") {
-              return <SearchCard key={index} video={video} />;
+              return <SearchCard thumbnail={0} video={video} />;
             } else {
-              return <SearchChannel key={index} channel={channel} />;
+              return <SearchChannel channel={channel} />;
             }
           })
       ) : (

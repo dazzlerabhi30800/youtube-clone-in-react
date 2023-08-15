@@ -9,7 +9,9 @@ const stateSlices = createSlice({
     inputQuery: "",
     homeResults: [],
     relatedVideo: null,
+    channelData: null,
     videoInfo: null,
+    channelVideo: null,
     category: "New",
     loading: false,
   },
@@ -74,6 +76,18 @@ const stateSlices = createSlice({
         relatedVideo: action.payload,
       };
     },
+    setChannelData: (state, action) => {
+      return {
+        ...state,
+        channelData: action.payload,
+      };
+    },
+    setChannelVideo: (state, action) => {
+      return {
+        ...state,
+        channelVideo: action.payload,
+      };
+    },
   },
 });
 
@@ -94,6 +108,8 @@ export const {
   setLoading,
   setVideoInfo,
   setRelatedVideo,
+  setChannelData,
+  setChannelVideo,
 } = stateSlices.actions;
 
 export default store;

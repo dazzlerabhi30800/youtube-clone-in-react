@@ -18,13 +18,18 @@
 }
 
 
+.loader--div {
+    width: 100%;
+    display: flex;
+    margin: 10px auto;
+    justify-content: center;
+}
+
+
 .video--text * {
     margin: 10px 0;
 }
 
-.video--component h2 {
-    font-size: clamp(1rem, 1.5vw, 1.4rem);
-}
 
 
 .video--player {
@@ -111,35 +116,28 @@
 }
 
 .related--info h2 {
-    font-size: 0.8rem;
-    color: #ffffff;
+    font-size: clamp(0.7rem, 1.2vw, 0.75rem);
+    color: #dbdbdb;
 }
 
 .related--info p,
 .related--stats {
-    font-size: clamp(13px, 1.2vw, 15px);
+    font-size: clamp(0.65rem, 1.2vw, 0.75rem);
     color: #bbbbbb;
 }
 
 
 @media screen and (min-width: 1000px) {
-
     .video--component {
         display: grid;
-        grid-template-areas: repeat(4, 1fr);
-    }
-
-    .video--player {
-        width: 100%;
-        grid-column-start: 1;
-        grid-column-end: 2;
+        grid-template-columns: 3fr 1fr;
     }
 
     .related--video--container {
-        width: 100%;
-        grid-column-start: 3;
-        grid-column-end: 4;
+        margin: 0 auto;
     }
+
+
 
     .thumbnail {
         width: 40%;
@@ -149,27 +147,24 @@
         width: 60%;
     }
 
-
-
 }
 
 
 
 @media screen and (min-width: 1200px) {
     .video--component {
-        padding: 2rem;
-        grid-template-areas: repeat(5, 1fr);
+        grid-template-columns: 3fr 1fr;
     }
 
+}
 
-    .video--player {
-        grid-column-start: 1;
-        grid-column-end: 3;
+
+@media (hover:hover) {
+    .related--video {
+        transition: 0.3s linear;
     }
 
-    .related--video--container {
-        grid-column-start: 4;
-        grid-column-end: 5;
+    .related--video:hover {
+        background: rgba(43, 43, 43, 0.564);
     }
-
 }

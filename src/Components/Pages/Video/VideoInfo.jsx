@@ -1,10 +1,11 @@
 import { BiLike } from "react-icons/bi";
 import { BsEyeFill } from "react-icons/bs";
 import { formatNumbers, formatViews } from "../../../api/FetchApi";
+import { Link } from "react-router-dom";
 
 export default function VideoInfo({ info }) {
   let { author, title, videoId, description } = info;
-  let { avatar, stats } = author;
+  let { avatar, stats, channelId } = author;
   return (
     <div className="video--info">
       <div className="video--text">
@@ -20,14 +21,14 @@ export default function VideoInfo({ info }) {
           justifyContent: "space-between",
         }}
       >
-        <div className="avatar">
+        <Link to={`/channel/${channelId}`} className="avatar">
           <img
             style={{ width: "45px", height: "45px" }}
             src={avatar[0]?.url}
             alt={title}
           />
           <span>{stats.subscribersText}</span>
-        </div>
+        </Link>
         <div className="video--stats">
           <div className="stat like">
             <BiLike />

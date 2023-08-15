@@ -1,12 +1,11 @@
 nav {
-    /* background: #282727; */
     background: url("https://images.unsplash.com/photo-1577979749830-f1d742b96791?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     backdrop-filter: blur(10px);
     display: flex;
-    transition: 0.3s linear;
+    transition: 0.3s ease-in-out;
 }
 
 .links {
@@ -24,7 +23,7 @@ nav {
     align-items: center;
     gap: 15px;
     flex: 1;
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
 hr {
@@ -63,7 +62,7 @@ nav.hide {
         height: calc(100vh - 60px);
         left: 0;
         z-index: 444;
-        transform: translateX(-500px);
+        transform: translateX(-300px);
     }
 
     nav.active {

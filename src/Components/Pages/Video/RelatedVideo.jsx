@@ -4,7 +4,7 @@ import { BsDot } from "react-icons/bs";
 
 export default function RelatedVideo({ info: { video } }) {
   return (
-    <Link style={{ height: "auto" }} to={`/video/${video?.videoId}`}>
+    <Link to={`/video/${video?.videoId}`}>
       <div className="related--video">
         <div
           style={{ backgroundImage: `url(${video?.thumbnails[0]?.url})` }}

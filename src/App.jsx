@@ -6,6 +6,7 @@ import Header from "./Components/Semantic Comps/Header";
 import Navbar from "./Components/Semantic Comps/Navbar";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { setMenu } from "../redux/Slice";
+import Channel from "./Components/Pages/Channel/Channel";
 
 function App() {
   const location = useLocation();
@@ -23,6 +24,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/video/:id" element={<Video />} />
+          <Route path="/channel/:id" element={<Channel />} />
         </Routes>
       </main>
     </>

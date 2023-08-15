@@ -2,7 +2,7 @@ import { BsCheckCircleFill } from "react-icons/bs";
 import { formatSeconds, formatViews } from "../../../api/FetchApi";
 import { Link } from "react-router-dom";
 
-export default function SearchCard({ video, index }) {
+export default function SearchCard({ video, thumbnail }) {
   const handleMouseEnter = (id, thumbnail) => {
     if (!thumbnail) return;
     const targetElement = document.getElementById(`${id}`);
@@ -15,10 +15,10 @@ export default function SearchCard({ video, index }) {
     targetElement.style.backgroundImage = `url(${thumbnail})`;
   };
   return (
-    <Link to={`/video/${video?.videoId}`}>
+    <Link className="searchLink" to={`/video/${video?.videoId}`}>
       <div
         style={{
-          backgroundImage: `url(${video?.thumbnails[0]?.url})`,
+          backgroundImage: `url(${video?.thumbnails[thumbnail]?.url})`,
         }}
         onMouseEnter={() =>
           handleMouseEnter(
@@ -35,8 +35,12 @@ export default function SearchCard({ video, index }) {
         <div className="search--card--div">
           <h1 className="title">{video?.title}</h1>
           <div className="avatar">
-            <img src={video?.author?.avatar[0]?.url} alt="title" />
-            <p>{video?.author?.title || "No title Available"}</p>
+            {video?.author?.avatar[0]?.url && (
+              <img src={video?.author?.avatar[0]?.url} alt="title" />
+            )}
+            {video?.author?.title && (
+              <p>{video?.author?.title || "No title Available"}</p>
+            )}
             {video?.author?.badges[0]?.text === "Verified" && (
               <span>
                 <BsCheckCircleFill />

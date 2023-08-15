@@ -1,7 +1,6 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { BsYoutube, BsSearch } from "react-icons/bs";
 import { RiVideoAddLine } from "react-icons/ri";
-import { AiOutlineClose } from "react-icons/ai";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,12 +10,14 @@ import {
   setSearchResults,
   showMenu,
 } from "../../../redux/Slice";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 
 const Header = () => {
   const { searchResults, inputQuery } = useSelector(
     (data) => data.youtubeReducer
   );
+
+  const inputRef = useRef();
 
   const dispatch = useDispatch();
   const location = useLocation();
@@ -29,6 +30,7 @@ const Header = () => {
       navigate("/");
     }
     dispatch(setCategory(inputQuery));
+    inputRef.current.blur();
   };
 
   return (
@@ -40,16 +42,17 @@ const Header = () => {
         >
           <RxHamburgerMenu />
         </button>
-        <div className="logo">
+        <Link to="/" className="logo">
           <BsYoutube />
           <h1> Youtube</h1>
-        </div>
+        </Link>
       </div>
       <form onSubmit={handleResults} className="search--container">
         <input
           onChange={(e) => dispatch(setInputQuery(e.target.value))}
           value={inputQuery}
           type="text"
+          ref={inputRef}
           placeholder="Search"
           className="search-input"
         />
